@@ -1,0 +1,35 @@
+A first test project with Symfony4 and Semver
+
+# Installation
+
+## Requirements
+
+* php 7.2+
+* composer <https://getcomposer.org/>
+* yarn <https://yarnpkg.com/fr/>
+* node 9.x and npm <https://www.npmjs.com/> consider using nvm to manage node/npm versions: <https://github.com/creationix/nvm>
+* git <https://git-scm.com/>
+
+## Build project
+
+```bash
+cd [project]
+yarn
+composer install 
+```
+
+## Semver
+
+The project use Sementic Versionning, your commit messages must comply to semver formatting
+(this is enforced with commitlint)
+
+CHANGELOG and release is managed with standard-version which leverage semver commits format
+to produce correct Versionning
+
+# Run for developpers
+
+No Docker so far but you can start a dev webserver with
+
+```bash
+bin/console server:start
+```
