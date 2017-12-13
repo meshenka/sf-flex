@@ -1,6 +1,6 @@
 {
   "name": "sf-flex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a test application for symfony4",
   "main": "index.js",
   "author": "Sylvain Gogel <sylvain.gogel@gmail.com>",
