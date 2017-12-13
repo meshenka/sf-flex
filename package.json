@@ -1,0 +1,18 @@
+{
+  "name": "sf-flex",
+  "version": "1.0.0",
+  "description": "a test application for symfony4",
+  "main": "index.js",
+  "author": "Sylvain Gogel <sylvain.gogel@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^5.2.5",
+    "@commitlint/config-conventional": "^5.2.3",
+    "husky": "^0.14.3"
+  },
+  "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS"
+  }
+}
