@@ -10,9 +10,11 @@
   "devDependencies": {
     "@commitlint/cli": "^5.2.5",
     "@commitlint/config-conventional": "^5.2.3",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "standard-version": "^4.2.0"
   },
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "release": "standard-version --no-verify"
   }
 }
