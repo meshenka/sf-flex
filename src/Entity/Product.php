@@ -1,3 +1,10 @@
+<?php 
+/**
+ * A Product Entity
+ * 
+ * @author Sylvain Gogel <sylvain.gogel@gmail.com>
+ * @see http://fabien.potencier.org/symfony4-demo.html
+ */
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
