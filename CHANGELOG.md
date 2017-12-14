@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/meshenka/sf-flex/compare/v1.0.2...v1.0.3) (2017-12-14)
+
+
+### Bug Fixes
+
+* product entity php header ([56f8744](https://github.com/meshenka/sf-flex/commit/56f8744))
+* use md format for readme ([7a2dc02](https://github.com/meshenka/sf-flex/commit/7a2dc02))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/meshenka/sf-flex/compare/v1.0.1...v1.0.2) (2017-12-13)
 
