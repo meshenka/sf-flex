@@ -1,6 +1,6 @@
-A first test project with Symfony4 and Semver
-
 # Installation
+
+A first test project with Symfony4 and Semver
 
 ## Requirements
 
@@ -15,7 +15,7 @@ A first test project with Symfony4 and Semver
 ```bash
 cd [project]
 yarn
-composer install 
+composer install
 ```
 
 ## Semver
@@ -36,13 +36,12 @@ It will take care of the following
 
 * bump version
 * update CHANGELOG
-* commit package.json and CHANGELOG.md 
+* commit package.json and CHANGELOG.md
 * tag a new release
 
-@see https://github.com/conventional-changelog/standard-version
+@see <https://github.com/conventional-changelog/standard-version>
 
-
-# Run for developpers
+## Run for developpers
 
 No Docker so far but you can start a dev webserver with
 
