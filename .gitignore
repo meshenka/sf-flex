@@ -12,6 +12,8 @@
 
 node_modules
 yarn-error.log
+# thoses are built with yarn build
+/public/app/
 ###> behat/symfony2-extension ###
 behat.yml
 ###< behat/symfony2-extension ###
