@@ -27,7 +27,9 @@
     "webpack-notifier": "^1.5.0"
   },
   "scripts": {
-    "build:assets": "encore dev",
+    "dev": "npm-run-all dev:*",
+    "dev:assets": "encore dev",
+    "build:assets": "encore production",
     "build": "npm-run-all build:*",
     "lint": "npm-run-all lint:*",
     "lint:style": "stylelint src/**/*.scss",
