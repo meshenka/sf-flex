@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 uid=$(stat -c %u /srv)
