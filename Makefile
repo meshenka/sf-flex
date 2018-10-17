@@ -113,3 +113,68 @@ watch: node_modules
 help: ## Makefile help
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 .PHONY: help
+
+ ##
+ ## Quality Assurance
+ ## -----------------
+ ##
+QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
+ARTEFACTS = var/artefacts
+
+lint: ## lint
+lint: lf lt ly
+
+lt: ## lint twig templates
+lt: vendor
+	$(SYMFONY) lint:twig templates
+
+ly: ## Lint YAML files
+ly: vendor
+	$(SYMFONY) lint:yaml config
+
+lf: ## lint front end resources (js /s css)
+lf: node_modules
+	$(YARN) run lint
+
+security: ## Check security of your dependencies (https://security.sensiolabs.org/)
+security: vendor
+	-$(EXEC_PHP) ./vendor/bin/security-checker security:check
+
+phpmd: ## PHP Mess Detector (https://phpmd.org)
+	$(QA) phpmd src text .phpmd.xml
+
+php_codesnifer: ## PHP_CodeSnifer (https://github.com/squizlabs/PHP_CodeSniffer)
+	$(QA) phpcs -v --standard=.phpcs.xml src
+
+phpcpd: ## PHP Copy/Paste Detector (https://github.com/sebastianbergmann/phpcpd)
+	$(QA) phpcpd src
+
+phpdcd: ## PHP Dead Code Detector (https://github.com/sebastianbergmann/phpdcd)
+	$(QA) phpdcd src
+
+apply-php-cs-fixer: ## apply php-cs-fixer fixes
+	$(QA) php-cs-fixer fix --using-cache=no --verbose --diff
+
+artefacts:
+	mkdir -p $(ARTEFACTS)
+
+phpmetrics: ## PhpMetrics (http://www.phpmetrics.org)
+phpmetrics: artefacts
+	$(QA) phpmetrics --report-html=$(ARTEFACTS)/phpmetrics src
+
+php-cs-fixer: ## php-cs-fixer (http://cs.sensiolabs.org)
+	$(QA) php-cs-fixer fix --dry-run --using-cache=no --verbose --diff
+
+twigcs: ## twigcs (https://github.com/allocine/twigcs)
+	$(QA) twigcs lint templates
+
+pdepend: ## PHP_Depend (https://pdepend.org)
+pdepend: artefacts
+	$(QA) pdepend \
+		--summary-xml=$(ARTEFACTS)/pdepend_summary.xml \
+		--jdepend-chart=$(ARTEFACTS)/pdepend_jdepend.svg \
+		--overview-pyramid=$(ARTEFACTS)/pdepend_pyramid.svg \
+		src/
+
+
+.PHONY: lf lt ly security pdepend twigcs php-cs-fixer phpmetrics apply-php-cs-fixer phpdcd php_codesnifer
