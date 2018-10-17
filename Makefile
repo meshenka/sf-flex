@@ -57,10 +57,16 @@ no-docker:
 ## Utils
 ## -----
 ##
+cc:  ## alias to clear-cache
+cc: clear-cache
+
+clear-cache:  ## clear application cache
+	$(SYMFONY) cache:clear 
+
 db: ## Reset the database and load fixture @TODO
 db: .env vendor
 	@$(EXEC_PHP) php -r 'echo "Wait database...\n"; set_time_limit(15); require __DIR__."/vendor/autoload.php"; (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__."/.env"); $$u = parse_url(getenv("DATABASE_URL")); for(;;) { if(@fsockopen($$u["host"].":".($$u["port"] ?? 3306))) { break; }}'
-	@$(SYMFONY) doctrine:database:drop --if-exists --force
+	-@$(SYMFONY) doctrine:database:drop --if-exists --force
 	@$(SYMFONY) doctrine:database:create --if-not-exists
 
 yarn.lock: ## update yarn dependencies
@@ -100,7 +106,7 @@ watch: ## Run Webpack Encore in watch mode
 watch: node_modules
 	$(YARN) run watch
 
-.PHONY: db assets watch
+.PHONY: db assets watch clear-cache
 
 
 .DEFAULT_GOAL := help
