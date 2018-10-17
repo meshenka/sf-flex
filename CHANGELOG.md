@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/meshenka/sf-flex/compare/v1.0.4...v1.0.5) (2018-10-17)
+
+
+### Bug Fixes
+
+* readme synthax ([c61ff4a](https://github.com/meshenka/sf-flex/commit/c61ff4a))
+* remove useless bootstrap dependency ([d679215](https://github.com/meshenka/sf-flex/commit/d679215))
+* update dev dependencies ([81786b2](https://github.com/meshenka/sf-flex/commit/81786b2))
+* webpack config synthax ([fc87c4f](https://github.com/meshenka/sf-flex/commit/fc87c4f))
+* **build:** add makefile and docker containers config ([2ab6485](https://github.com/meshenka/sf-flex/commit/2ab6485))
+* **controller:** add a default controller and template ([6220cb8](https://github.com/meshenka/sf-flex/commit/6220cb8))
+* **docker:** fix permissions, update readme ([9b0f5f7](https://github.com/meshenka/sf-flex/commit/9b0f5f7))
+* **docker:** make yarn working inside a node container ([1c42e4c](https://github.com/meshenka/sf-flex/commit/1c42e4c))
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/meshenka/sf-flex/compare/v1.0.3...v1.0.4) (2018-01-05)
 
