@@ -4,18 +4,18 @@ A first test project with Symfony4 and Semver
 
 ## Requirements
 
-* php 7.2+
-* composer <https://getcomposer.org/>
-* yarn <https://yarnpkg.com/fr/>
-* node 9.x and npm <https://www.npmjs.com/> consider using nvm to manage node/npm versions: <https://github.com/creationix/nvm>
+* docker and docker-compose <https://docs.docker.com/compose/>
+* make
 * git <https://git-scm.com/>
 
 ## Build project
 
 ```bash
 cd [project]
-yarn
-composer install
+# display make help (autodocumented)
+make 
+# install the all thing docker containers, composer, yarn etc
+make install
 ```
 
 ## Semver
@@ -43,8 +43,9 @@ It will take care of the following
 
 ## Run for developpers
 
-No Docker so far but you can start a dev webserver with
+The full stack is dockerized @see <file:./docker-compose.yml>
+
 
 ```bash
-bin/console server:start
+make start # start project, after initial make install
 ```
