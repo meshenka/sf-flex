@@ -4,7 +4,7 @@ A first test project with Symfony4 and Semver
 
 ## Requirements
 
-* docker and docker-compose
+* docker and docker-compose <https://docs.docker.com/compose/>
 * make
 * git <https://git-scm.com/>
 
@@ -12,7 +12,9 @@ A first test project with Symfony4 and Semver
 
 ```bash
 cd [project]
-make
+# display make help (autodocumented)
+make 
+# install the all thing docker containers, composer, yarn etc
 make install
 ```
 
