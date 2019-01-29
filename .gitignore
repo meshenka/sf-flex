@@ -1,19 +1,14 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> symfony/web-server-bundle ###
-.web-server-pid
-###< symfony/web-server-bundle ###
-
 node_modules
 yarn-error.log
 # thoses are built with yarn build
 /public/app/
-###> behat/symfony2-extension ###
-behat.yml
-###< behat/symfony2-extension ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
