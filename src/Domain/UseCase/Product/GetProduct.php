@@ -29,7 +29,8 @@ class GetProduct implements UseCase {
      */
     protected $responseCreator;
 
-    public function __construct(ProductStoreInterface $store, ProductResponseCreator $responseCreator ) {
+    public function __construct(ProductStoreInterface $store, ProductResponseCreator $responseCreator ) 
+    {
 
         $this->store = $store;
         $this->responseCreator = $responseCreator;

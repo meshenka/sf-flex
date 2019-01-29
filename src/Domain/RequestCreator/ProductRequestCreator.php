@@ -10,7 +10,8 @@ use App\Domain\useCase\UseCaseRequest;
  */
 class ProductRequestCreator {
 
-    public function createGetProduct(int $id) : UseCaseRequest {
+    public function createGetProduct(int $id) : UseCaseRequest 
+    {
         return new GetProductRequest($id);
     } 
 }
