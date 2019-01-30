@@ -54,7 +54,7 @@ class ProductController extends Controller
      *
      * @return Response
      */
-    public function get(ProductEntity $product, GetProduct $useCase): Response
+    public function getProduct(ProductEntity $product, GetProduct $useCase): Response
     {
 
         $useCaseRequest = $this->requestCreator->createGetProduct($product->getId());
