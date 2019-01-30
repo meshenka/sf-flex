@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sylvain.gogel@gmail.com>
+ * @license MIT
+ * 
+ */
 namespace App\Domain\Model;
 
 abstract class Product implements ProductInterface {
@@ -24,6 +28,11 @@ abstract class Product implements ProductInterface {
      */
     protected $description;
 
+    /**
+     * getName
+     *
+     * @return string
+     */
     public function getName() : string 
     {
         return $this->name;
@@ -45,4 +54,60 @@ abstract class Product implements ProductInterface {
         return $this->price;
     }
 
+
+    /**
+     * Set the value of id
+     *
+     * @param  int  $id
+     *
+     * @return  self
+     */ 
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @param  string  $name
+     *
+     * @return  self
+     */ 
+    public function setName(string $name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @param  float  $price
+     *
+     * @return  self
+     */ 
+    public function setPrice(float $price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @param  string  $description
+     *
+     * @return  self
+     */ 
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 }

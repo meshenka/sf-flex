@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sylvain.gogel@gmail.com>
+ * @license MIT
+ */
 namespace App\Http\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,6 +30,14 @@ class ProductController extends Controller
      */
     private $assembly;
 
+    /**
+     * __construct
+     *
+     * @param  ProductRequestCreator $requestCreator
+     * @param  ProductAssembly $assembly
+     *
+     * @return void
+     */
     public function __construct(ProductRequestCreator $requestCreator, ProductAssembly $assembly) 
     {
         $this->requestCreator = $requestCreator;
@@ -35,6 +46,13 @@ class ProductController extends Controller
 
     /**
      * @Route("/product/{id}", name="app_product_get", methods="GET")
+     *  
+     * get
+     *
+     * @param  ProductEntity $product
+     * @param  GetProduct $useCase
+     *
+     * @return Response
      */
     public function get(ProductEntity $product, GetProduct $useCase): Response
     {
