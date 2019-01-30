@@ -3,7 +3,7 @@
 namespace App\Domain\UseCase\Product;
 
 use App\Domain\Store\ProductStoreInterface;
-use App\Domain\UseCase\UseCase;
+use App\Domain\UseCase\UseCaseInterface;
 use App\Domain\UseCase\UseCaseRequest;
 use App\Domain\UseCase\UseCaseResponse;
 
@@ -17,7 +17,7 @@ use App\Domain\ResponseCreator\ProductResponseCreator;
  * executre returns UseCaseResponse 
  */
 
-class GetProduct implements UseCase {
+class GetProduct implements UseCaseInterface {
 
     /**
      * @var ProductStoreInterface

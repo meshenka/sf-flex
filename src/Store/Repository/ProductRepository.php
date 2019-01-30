@@ -27,11 +27,23 @@ class ProductRepository implements ProductStoreInterface
     /** @var EntityRepository */
     protected $repository;
 
+    /**
+     * __construct
+     *
+     * @param  EntityManagerInterface $em
+     *
+     * @return void
+     */
     public function __construct(EntityManagerInterface $em) 
     {
         $this->repository = $em->getRepository(ProductEntity::class);
     }
 
+    /**
+     * findAllOrderedByName
+     *
+     * @return void
+     */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -41,11 +53,25 @@ class ProductRepository implements ProductStoreInterface
             ->getResult();
     }
 
+    /**
+     * find
+     *
+     * @param  int $id
+     *
+     * @return Product
+     */
     public function find(int $id) : Product
     {
         return $this->repository->find($id);
     }
 
+    /**
+     * update
+     *
+     * @param  Product $product
+     *
+     * @return void
+     */
     public function update(Product $product)  {
         throw new \RuntimeException("Implement this");
     }
