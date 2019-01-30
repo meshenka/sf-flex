@@ -10,7 +10,7 @@ namespace App\Domain\UseCase;
  * 
  * @see https://code.tutsplus.com/tutorials/design-patterns-the-command-pattern--cms-22942
  */
-interface UseCase {
+interface UseCaseInterface {
  
     /**
      * execute
