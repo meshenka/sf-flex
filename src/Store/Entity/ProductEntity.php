@@ -12,11 +12,9 @@ namespace App\Store\Entity;
 
 use App\Domain\Model\Product;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Entity
- * @ORM\Table(name="product")
+ * Doctrine mapping can be found  <src/Resources/config/doctrine/Product.orm.yaml>
+ * @see src/Resources/config/doctrine/Product.orm.yaml 
  */
 class ProductEntity extends Product
 {
