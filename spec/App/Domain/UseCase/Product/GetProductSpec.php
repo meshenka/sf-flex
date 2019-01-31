@@ -5,17 +5,8 @@ namespace spec\App\Domain\UseCase\Product;
 use App\Domain\UseCase\Product\GetProduct;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-
-
 use App\Domain\Store\ProductStoreInterface;
-
-// use App\Domain\UseCase\UseCase;
-// use App\Domain\UseCase\UseCaseRequest;
-// use App\Domain\UseCase\UseCaseResponse;
-
 use App\Domain\Model\Product;
-
-
 use App\Domain\ResponseCreator\ProductResponseCreator;
 use App\Domain\RequestCreator\ProductRequestCreator;
 use App\Domain\Response\Product\GetProductResponse;
@@ -23,7 +14,7 @@ use App\Domain\Response\Product\GetProductResponse;
 
 class GetProductSpec extends ObjectBehavior
 {
-    const ID = 55;
+    const FAKE_ID = 55;
 
     public $store;
     public $creator;
@@ -44,9 +35,9 @@ class GetProductSpec extends ObjectBehavior
     }
 
     public function it_execute(Product $p) {
-        $request = (new  ProductRequestCreator())->createGetProduct(self::ID);
+        $request = (new  ProductRequestCreator())->createGetProduct(self::FAKE_ID);
 
-        $this->store->find(self::ID)->willReturn($p);
+        $this->store->find(self::FAKE_ID)->willReturn($p);
 
         $response = $this->execute($request);
         $response->shouldHaveType(GetProductResponse::class);

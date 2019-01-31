@@ -19,4 +19,25 @@ use App\Domain\Model\Product;
 class ProductEntity extends Product
 {
 
+    protected $slug;
+
+    /**
+     * Get the value of slug
+     */ 
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
 }
