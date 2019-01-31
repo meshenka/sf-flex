@@ -33,7 +33,7 @@ $response = $useCase->execute($request); // the usecase response
 
 ```
 
-Creators are inspired by Redux action creator function (see https://redux.js.org/basics/actions#action-creators)
+Creators are inspired by Redux action creator function (see <https://redux.js.org/basics/actions#action-creators>)
 
 ### App\Http
 
@@ -48,7 +48,7 @@ We will find
 Assembly are convertion helper classes to cast Entity to ViewModel (We do not want to expose entity to templating)
 
 Note: Why do we not want to expose Entity to templating?
-> Our entity extends Data Model, following our design, 
+> Our entity extends Data Model, following our design,
 > the model can implement application logic methods like product.disable()
 > exposing the entity to the view means twig integrators could accidentaly call thoses methods
 > View should not mutate state.
