@@ -53,8 +53,20 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "easycorp/easy-log-handler": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
+        }
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "monolog/monolog": {
+        "version": "1.24.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -131,6 +143,9 @@
     "symfony/debug": {
         "version": "v4.0.1"
     },
+    "symfony/debug-pack": {
+        "version": "v1.0.7"
+    },
     "symfony/dependency-injection": {
         "version": "v4.0.1"
     },
@@ -184,6 +199,18 @@
     },
     "symfony/lts": {
         "version": "4-dev"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.2.2"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.1",
+            "ref": "18ebf5a940573a20de06f9c4060101eeb438cf3d"
+        }
     },
     "symfony/options-resolver": {
         "version": "v4.0.1"
