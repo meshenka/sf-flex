@@ -1,0 +1,51 @@
+language: php
+sudo: false
+# safelist
+branches:
+  only:
+  - master
+  - feature/qa
+
+cache:
+  yarn: true
+  directories:
+    - $HOME/.composer/cache/files
+    - ./bin/.phpunit
+    - node_modules
+
+env:
+  global:
+    - APP_ENV=prod
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.2
+ 
+before_install:
+  - npm i -g yarn
+  - composer self-update
+
+install:
+  - phpenv config-rm xdebug.ini
+  # - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer install
+  - yarn run install
+  - yarn run build
+
+script:
+  - ./bin/phpspec run -f pretty
+  # this checks that the source code follows the Symfony Code Syntax rules
+  # - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
+  # this checks that the YAML config files contain no syntax errors
+  - ./bin/console lint:yaml config
+  # lint font
+  - yarn run lint
+  # this checks that the Twig template files contain no syntax errors
+  - ./bin/console lint:twig templates
+  # this checks that the XLIFF translations contain no syntax errors
+  # - ./bin/console lint:xliff translations
+  # this checks that the application doesn't use dependencies with known security vulnerabilities
+  # - ./bin/console security:chec
+  # this checks that Doctrine's mapping configurations are valid
+  - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
