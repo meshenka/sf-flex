@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/meshenka/sf-flex.svg?branch=master)](https://travis-ci.com/meshenka/sf-flex)
+
 # Installation
 
 A first test project with Symfony4 and Semver
