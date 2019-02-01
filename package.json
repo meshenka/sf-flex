@@ -6,6 +6,10 @@
   "author": "Sylvain Gogel <sylvain.gogel@gmail.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": "<9.0.0",
+    "yarn": "^1.13.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^7.5.0",
@@ -33,11 +37,15 @@
     "lint:style": "stylelint src/**/*.scss",
     "lint:js": "eslint src/**/*.js",
     "lint:php": "exit 0",
+    "test": "npm-run-all test:*",
+    "test:unit": "bin/phpspec run -f pretty",
+    "test:integration": "exit 0",
     "release": "standard-version --no-verify"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn run test:unit"
     }
   }
 }
