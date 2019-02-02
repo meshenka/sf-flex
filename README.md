@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.com/meshenka/sf-flex.svg?branch=master)](https://travis-ci.com/meshenka/sf-flex)
 
-# Installation
+# Symfony 4 Flex Demo App
+
+[![Build Status](https://dev.azure.com/sylvaingogel/sylvaingogel/_apis/build/status/meshenka.sf-flex?branchName=master)](https://dev.azure.com/sylvaingogel/sylvaingogel/_build/latest?definitionId=1&branchName=master)
 
 A first test project with Symfony4 and Semver
 
@@ -15,7 +16,7 @@ A first test project with Symfony4 and Semver
 ```bash
 cd [project]
 # display make help (autodocumented)
-make 
+make
 # install the all thing docker containers, composer, yarn etc
 make install
 ```
@@ -46,7 +47,6 @@ It will take care of the following
 ## Run for developpers
 
 The full stack is dockerized @see <file:./docker-compose.yml>
-
 
 ```bash
 make start # start project, after initial make install
