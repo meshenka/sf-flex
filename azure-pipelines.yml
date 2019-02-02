@@ -5,15 +5,19 @@
 
 trigger:
 - master
-- feature/qa
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
   phpVersion: 7.2
+  nodeVersion: 10.15
 
 steps:
+- task: NodeTool@0 
+  inputs:
+    versionSpec: $(nodeVersion)
+    displayName: 'Use node $(nodeVersion)'
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
@@ -23,8 +27,17 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
+- script: npm i -g yarn
+  displayName: 'install yarn'
+
+- script: yarn install
+  displayName: 'install front end dependencies'
+
+- script: yarn run build
+  displayName: 'build front end dependencies'
+
 - script: composer install --no-interaction --prefer-dist --optimize-autoloader
   displayName: 'composer install'
 
 - script: ./bin/phpspec run -f pretty
-  displayName: Run phpspec
+  displayName: run phpspec
