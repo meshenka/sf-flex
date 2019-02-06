@@ -21,7 +21,13 @@ doctrine:
         mappings:
             App\Store:
                 is_bundle: false
-                type: yml
+                type: xml
                 dir: '%kernel.project_dir%/src/Resources/config/doctrine/store'
                 prefix: 'App\Store\Entity'
                 alias: Store
+            App\Domain:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Resources/config/doctrine/model'
+                prefix: 'App\Domain\Model'
+                alias: Domain

@@ -14,7 +14,7 @@ use App\Domain\Model\Product;
 
 /**
  * Doctrine mapping can be found  <src/Resources/config/doctrine/Product.orm.yaml>
- * @see src/Resources/config/doctrine/Product.orm.yaml 
+ * @see src/Resources/config/doctrine/store/ProductEntity.orm.yaml 
  */
 class ProductEntity extends Product
 {
