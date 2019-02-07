@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/meshenka/sf-flex/compare/v1.0.5...v1.1.0) (2019-02-07)
+
+
+### Bug Fixes
+
+* **controller:** use extends AbstractController ([cf948d0](https://github.com/meshenka/sf-flex/commit/cf948d0))
+* **doctrine:** make entity repositories as wirable services ([623b007](https://github.com/meshenka/sf-flex/commit/623b007))
+* dependencies version ([6f5cb67](https://github.com/meshenka/sf-flex/commit/6f5cb67))
+* **folders:** reorganize src to split framework from Domain ([e1fc678](https://github.com/meshenka/sf-flex/commit/e1fc678))
+* **repository:** reorganize Doctine repository ([41caf84](https://github.com/meshenka/sf-flex/commit/41caf84))
+* **test:** add phpspec and test GetProduct UseCase ([746e921](https://github.com/meshenka/sf-flex/commit/746e921))
+* doctrine config ([31f9ea7](https://github.com/meshenka/sf-flex/commit/31f9ea7))
+* encore dependencies ([2f779ba](https://github.com/meshenka/sf-flex/commit/2f779ba))
+* mapping issues ([224e8f2](https://github.com/meshenka/sf-flex/commit/224e8f2))
+* schema generation ([345e302](https://github.com/meshenka/sf-flex/commit/345e302))
+* use node 10.15 LTS ([671fb18](https://github.com/meshenka/sf-flex/commit/671fb18))
+
+
+### Features
+
+* **controller:** add ProductController and ViewModel ([311003c](https://github.com/meshenka/sf-flex/commit/311003c))
+* add fixture loading ([12664b5](https://github.com/meshenka/sf-flex/commit/12664b5))
+* add flex maker ([562ee09](https://github.com/meshenka/sf-flex/commit/562ee09))
+
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/meshenka/sf-flex/compare/v1.0.4...v1.0.5) (2018-10-17)
 
