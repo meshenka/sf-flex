@@ -6,7 +6,6 @@
 
     <entity name="App\Store\Entity\ProductEntity" 
         table="product" 
-        schema="schema_name" 
         repository-class="App\Store\Repository\ProductRepository" 
         read-only="false">
         <id name="id" 
