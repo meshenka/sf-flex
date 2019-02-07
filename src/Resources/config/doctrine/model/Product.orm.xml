@@ -11,8 +11,8 @@
             column="name"/>
         <field name="price" 
             type="decimal" 
-            precision="2" 
-            scale="7">
+            precision="7" 
+            scale="2">
             <options>
                 <option name="comment">Price in Euro</option>
                 <option name="default">0.0</option>
