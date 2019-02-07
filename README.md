@@ -51,3 +51,13 @@ The full stack is dockerized @see <file:./docker-compose.yml>
 ```bash
 make start # start project, after initial make install
 ```
+
+## What did i learn
+
+* Symfony Flex
+* Using XML Mapping for doctrine
+* Dockerize the infrastructure
+* Setup data fixture with faker + alice
+* Configure Symfony for non standard Namespaces
+* PHP Stan <https://github.com/phpstan/phpstan>
+* Autowiring + Autoconfigure + Type Hints
