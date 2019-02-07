@@ -6,6 +6,8 @@ use App\Domain\Store\ProductStoreInterface;
 use App\Domain\UseCase\UseCaseInterface;
 use App\Domain\UseCase\UseCaseRequest;
 use App\Domain\UseCase\UseCaseResponse;
+use App\Domain\Request\Product\GetProductRequest;
+use App\Domain\Response\Product\GetProductResponse;
 
 use App\Domain\ResponseCreator\ProductResponseCreator;
 

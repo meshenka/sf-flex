@@ -121,6 +121,11 @@ help: ## Makefile help
 
 QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
 ARTEFACTS = var/artefacts
+STAN = docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
+
+stan: ## run static analysis
+stan:
+	$(STAN) analyse /app/src --level=max
 
 lint: ## lint
 lint: lf lt ly

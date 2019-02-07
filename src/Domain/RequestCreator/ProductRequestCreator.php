@@ -2,7 +2,7 @@
 namespace App\Domain\RequestCreator;
 
 use App\Domain\Request\Product\GetProductRequest;
-use App\Domain\useCase\UseCaseRequest;
+use App\Domain\UseCase\UseCaseRequest;
 
 /**
  * 

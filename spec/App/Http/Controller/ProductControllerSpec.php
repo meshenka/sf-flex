@@ -31,4 +31,5 @@ class ProductControllerSpec extends ObjectBehavior
     {
         $this->shouldHaveType(ProductController::class);
     }
+
 }

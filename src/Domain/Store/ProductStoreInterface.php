@@ -9,7 +9,7 @@ use App\Domain\Model\Product;
  */
 interface ProductStoreInterface {
 
-    public function find(int $id) : Product; 
+    public function find($id);
 
     public function update(Product $product);
     
