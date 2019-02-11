@@ -6,11 +6,13 @@
 namespace App\Store\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Persistence\ObjectRepository;
 use App\Domain\Store\ProductStoreInterface;
 use App\Domain\Model\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Store\Entity\ProductEntity;
-
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * ProductRepository
@@ -21,48 +23,25 @@ use App\Store\Entity\ProductEntity;
  * @see https://blog.fervo.se/blog/2017/07/06/doctrine-repositories-autowiring/ 
  * 
  */
-class ProductRepository implements ProductStoreInterface
+class ProductRepository extends ServiceEntityRepository implements ProductStoreInterface
 {
 
-    /** @var EntityRepository */
-    protected $repository;
-
-    /**
-     * __construct
-     *
-     * @param  EntityManagerInterface $em
-     *
-     * @return void
-     */
-    public function __construct(EntityManagerInterface $em) 
+    public function __construct(RegistryInterface $registry)
     {
-        $this->repository = $em->getRepository(ProductEntity::class);
+        parent::__construct($registry, ProductEntity::class);
     }
 
     /**
      * findAllOrderedByName
      *
-     * @return void
+     * @return mixed
      */
     public function findAllOrderedByName()
     {
-        return $this->getEntityManager()
-            ->createQuery(
+        return $this->createQuery(
                 'SELECT p FROM ProductEntity p ORDER BY p.name ASC'
             )
             ->getResult();
-    }
-
-    /**
-     * find
-     *
-     * @param  int $id
-     *
-     * @return Product
-     */
-    public function find(int $id) : Product
-    {
-        return $this->repository->find($id);
     }
 
     /**

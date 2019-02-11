@@ -5,6 +5,7 @@ namespace App\Http\Assembly;
 use App\Store\Entity\ProductEntity;
 use App\Http\ViewModel\ProductViewModel;
 use App\Domain\Store\ProductStoreInterface;
+use App\Domain\Model\Product;
 
 /**
  * Assembly convert Entity <=> ViewModel
@@ -21,12 +22,12 @@ class ProductAssembly {
         $this->store = $store;
     }
 
-    public function entityToViewModel(ProductEntity $product): ProductViewModel 
+    public function entityToViewModel(Product $product): ProductViewModel 
     {
         return new ProductViewModel($product);
     }
 
-    public function viewModelToEntity(ProductViewModel $viewModel): ProductEntity
+    public function viewModelToEntity(ProductViewModel $viewModel): ?Product
     {
         return $this->store->find($viewModel->getId());
     }

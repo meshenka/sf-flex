@@ -10,10 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\RequestCreator\ProductRequestCreator;
-use App\Domain\UseCase\Product\GetProduct;
-use App\Http\ViewModel\ProductViewModel;
+// use App\Domain\UseCase\Product\GetProduct;
+// use App\Http\ViewModel\ProductViewModel;
 use App\Http\Assembly\ProductAssembly;
 use App\Store\Entity\ProductEntity;
+use App\Domain\UseCase\Product\GetProduct;
 
 /**
  * @Route("/")
@@ -45,6 +46,15 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/p/{id}", name="app_p_get", methods="GET")
+     */
+    public function index($id): Response
+    {
+        return $this->render('index.html.twig');
+    }
+
+
+    /**
      * @Route("/product/{id}", name="app_product_get", methods="GET")
      *  
      * get
@@ -54,15 +64,16 @@ class ProductController extends AbstractController
      *
      * @return Response
      */
-    public function getProduct(ProductEntity $product, GetProduct $useCase): Response
+    public function show(ProductEntity $product, GetProduct $useCase): Response
     {
-
-        $useCaseRequest = $this->requestCreator->createGetProduct($product->getId());
-        $useCaseResponse = $useCase->execute($useCaseRequest);
-        $product = $useCaseResponse->getProduct();
+        
+        // $useCaseRequest = $this->requestCreator->createGetProduct($product->getId());
+        // $useCaseResponse = $useCase->execute($useCaseRequest);
+        // $product = $useCaseResponse->getProduct();
 
         return $this->render('product/get.html.twig', [
             "product" => $this->assembly->entityToViewModel($product)
         ]);
+        
     }
 }

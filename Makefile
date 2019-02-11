@@ -121,6 +121,11 @@ help: ## Makefile help
 
 QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
 ARTEFACTS = var/artefacts
+STAN = docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
+
+stan: ## run static analysis
+stan:
+	$(STAN) analyse /app/src --level=max
 
 lint: ## lint
 lint: lf lt ly
@@ -139,7 +144,7 @@ lf: node_modules
 
 security: ## Check security of your dependencies (https://security.sensiolabs.org/)
 security: vendor
-	-$(EXEC_PHP) ./vendor/bin/security-checker security:check
+	-$(EXEC_PHP) ./bin/security-checker security:check
 
 phpmd: ## PHP Mess Detector (https://phpmd.org)
 	$(QA) phpmd src text .phpmd.xml
