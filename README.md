@@ -1,7 +1,7 @@
 
 # Symfony 4 Flex Demo App
 
-[![Build Status](https://dev.azure.com/sylvaingogel/sylvaingogel/_apis/build/status/meshenka.sf-flex?branchName=master)](https://dev.azure.com/sylvaingogel/sylvaingogel/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/sylvaingogel/sylvaingogel/_apis/build/status/meshenka.sf-flex?branchName=master)](https://dev.azure.com/sylvaingogel/sylvaingogel/_build/latest?definitionId=1&branchName=master) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 A first test project with Symfony4 and Semver:
 
