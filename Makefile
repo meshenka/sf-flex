@@ -144,7 +144,7 @@ lf: node_modules
 
 security: ## Check security of your dependencies (https://security.sensiolabs.org/)
 security: vendor
-	-$(EXEC_PHP) ./vendor/bin/security-checker security:check
+	-$(EXEC_PHP) ./bin/security-checker security:check
 
 phpmd: ## PHP Mess Detector (https://phpmd.org)
 	$(QA) phpmd src text .phpmd.xml
