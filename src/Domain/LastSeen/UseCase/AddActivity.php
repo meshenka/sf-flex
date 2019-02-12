@@ -25,7 +25,7 @@ class AddActivity {
         // else if request->date > user.lastSeen update user and returns
         try {
             /** @var UserLastSeen */
-            $user = $this->userStore->find($request->getUserId());
+            $user = $this->userStore->findUser($request->getUserId());
 
             if ($request->getDate() > $user->getLastSeen()) {
                 $user->setLastSeen($request->getDate());

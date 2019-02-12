@@ -29,7 +29,7 @@ class AddActivitySpec extends ObjectBehavior
     }
 
     public function it_create_new_userlastseen_if_not_found() {
-        $this->store->find("phpspec")->willThrow(UserLastSeenNotFound::class);
+        $this->store->findUser("phpspec")->willThrow(UserLastSeenNotFound::class);
 
         $date = new \DateTime();
         $this->store->new("phpspec", $date)->shouldBeCalled();
@@ -48,7 +48,7 @@ class AddActivitySpec extends ObjectBehavior
 
         $user->getId()->willReturn("phpspec");
         $user->getLastSeen()->willReturn((new \DateTime())->modify("-1 day"));
-        $this->store->find("phpspec")->willReturn($user);
+        $this->store->findUser("phpspec")->willReturn($user);
 
         $date = new \DateTime();
         $user->setLastSeen($date)->shouldBeCalled();
@@ -64,7 +64,7 @@ class AddActivitySpec extends ObjectBehavior
         $user->getId()->willReturn("phpspec");
         $user->getLastSeen()->willReturn(new \DateTime());
 
-        $this->store->find("phpspec")->willReturn($user);
+        $this->store->findUser("phpspec")->willReturn($user);
 
         $this->store->persist($user)->shouldNotBeCalled();
         //usecase
