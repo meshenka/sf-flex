@@ -3,12 +3,19 @@
 namespace App\Storage;
 
 use App\Domain\LastSeen\UserLastSeenStore;
-use Doctrine\ORM\EntityRepository;
+// use Doctrine\ORM\EntityRepository;
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
 use App\Domain\LastSeen\Model\UserLastSeen;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class UserLastSeenRepository extends EntityRepository implements UserLastSeenStore {
+class UserLastSeenRepository extends ServiceEntityRepository implements UserLastSeenStore {
     
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, UserLastSeenEntity::class);
+    }
+
     /**
      *
      * @param string $id
