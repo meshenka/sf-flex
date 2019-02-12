@@ -27,6 +27,7 @@ class AddActivity {
             /** @var UserLastSeen */
             $user = $this->userStore->findUser($request->getUserId());
 
+
             if ($request->getDate() > $user->getLastSeen()) {
                 $user->setLastSeen($request->getDate());
                 $this->userStore->persist($user);

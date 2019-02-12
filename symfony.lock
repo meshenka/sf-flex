@@ -89,6 +89,15 @@
             "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
         }
     },
+    "friendsofsymfony/rest-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "258300d52be6ad59b32a888d5ddafbf9638540ff"
+        }
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
@@ -347,8 +356,14 @@
     "symfony/security-csrf": {
         "version": "v4.2.2"
     },
+    "symfony/serializer": {
+        "version": "v4.2.3"
+    },
     "symfony/stopwatch": {
         "version": "v4.2.2"
+    },
+    "symfony/templating": {
+        "version": "v4.2.3"
     },
     "symfony/twig-bridge": {
         "version": "v4.0.1"
@@ -415,6 +430,12 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
+    },
+    "willdurand/negotiation": {
+        "version": "v2.3.1"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

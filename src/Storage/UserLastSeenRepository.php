@@ -25,7 +25,9 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
      */
     public function findUser(string $id) : UserLastSeen
     {
-        if ($user = $this->find($id != null)) {
+        $user = $this->find($id);
+
+        if ( $user) {
             return $user;
         }
         throw new UserLastSeenNotFound($id);
@@ -39,6 +41,7 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
     public function persist(UserLastSeen $user)
     {
         $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
     }
 
     /**

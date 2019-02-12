@@ -3,22 +3,20 @@
 namespace App\Http\Controller;
 
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use FOS\RestBundle\Controller\FOSRestController;
 /**
  * @Route("/api")
  */
-class PingController extends AbstractController
+class PingController extends FOSRestController
 {
     /**
      * @Route("/_internal/healthcheck", name="app_ping", methods="GET")
      */
-    public function ping(): Response
+    public function ping()
     {
-        $json = ["status" => "healthy"];
-
-        return new Response(json_encode($json), Response::HTTP_OK, ["Content-Type" => "application/json"]);
+        $data = ["status" => "healthy"];
+        return $this->view($data, Response::HTTP_OK);
     }
 }
