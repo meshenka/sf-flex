@@ -8,12 +8,6 @@ namespace App\Domain\LastSeen\Model;
 
 abstract class UserLastSeen {
 
-    public function __construct(string $id, \DateTime $date)
-    {
-        $this->setId($id);
-        $this->setLastSeen($date);
-    }
-
     /**
      * @var string
      */

@@ -23,11 +23,11 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Resources/config/doctrine/store'
-                prefix: 'App\Store\Entity'
+                prefix: 'App\Storage'
                 alias: Store
             App\Domain:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Resources/config/doctrine/model'
-                prefix: 'App\Domain\Model'
+                prefix: 'App\Domain\LastSeen\Model'
                 alias: Domain

@@ -14,7 +14,7 @@ interface UserLastSeenStore {
      * @return UserLastSeen
      * @throws App\Domain\LastSeen\Execption\UserLastSeenNotFound
      */
-    public function find(string $id) : UserLastSeen;
+    public function findUser(string $id) : UserLastSeen;
 
     /**
      * 

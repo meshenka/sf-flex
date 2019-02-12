@@ -123,6 +123,10 @@ QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
 ARTEFACTS = var/artefacts
 STAN = docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
 
+fixture:
+	@$(SYMFONY) doctrine:fixture:load
+.PHONY: fixture
+
 stan: ## run static analysis
 stan:
 	$(STAN) analyse /app/src --level=max
@@ -146,11 +150,17 @@ security: ## Check security of your dependencies (https://security.sensiolabs.or
 security: vendor
 	-$(EXEC_PHP) ./bin/security-checker security:check
 
+spec: ## Run Phpspec
+spec:
+	-$(EXEC_PHP) ./bin/phpspec run -f pretty
+
+.PHONY: spec
+
 phpmd: ## PHP Mess Detector (https://phpmd.org)
 	$(QA) phpmd src text .phpmd.xml
 
 php_codesnifer: ## PHP_CodeSnifer (https://github.com/squizlabs/PHP_CodeSniffer)
-	$(QA) phpcs -v --standard=.phpcs.xml src
+	$(QA) phpcs -v --standard=.phpcs.xml srcpj
 
 phpcpd: ## PHP Copy/Paste Detector (https://github.com/sebastianbergmann/phpcpd)
 	$(QA) phpcpd src

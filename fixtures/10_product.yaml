@@ -1,6 +1,0 @@
-App\Store\Entity\ProductEntity:
-  product_{1..10}:
-    name: <name()>
-    price: <randomNumber(3)>
-    description: <paragraph()>
-    slug: <current()>-<slug()>
