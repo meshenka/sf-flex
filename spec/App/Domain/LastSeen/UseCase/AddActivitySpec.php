@@ -40,8 +40,6 @@ class AddActivitySpec extends ObjectBehavior
         $request = new AddActivityRequest("phpspec", $date);
         $response = $this->execute($request);
         $response->shouldHaveType(AddActivityResponse::class);
-
-
     }
 
     public function it_update_userlastseen_if_date_is_newer(UserLastSeen $user) {

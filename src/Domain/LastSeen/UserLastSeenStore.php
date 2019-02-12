@@ -12,7 +12,7 @@ interface UserLastSeenStore {
      * @param string $id
      *
      * @return UserLastSeen
-     * @throws App\Domain\LastSeen\Execption\UserLastSeenNotFound
+     * @throws \App\Domain\LastSeen\Exception\UserLastSeenNotFound
      */
     public function findUser(string $id) : UserLastSeen;
 

@@ -24,18 +24,6 @@ class AddActivityRequest {
     }
 
     /**
-     * Set the value of userId
-     *
-     * @return  self
-     */ 
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
      * Get the value of date
      */ 
     public function getDate()
@@ -43,15 +31,4 @@ class AddActivityRequest {
         return $this->date;
     }
 
-    /**
-     * Set the value of date
-     *
-     * @return  self
-     */ 
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 }
