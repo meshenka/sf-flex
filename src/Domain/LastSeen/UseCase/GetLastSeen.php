@@ -21,8 +21,6 @@ class GetLastSeen {
 
     public function execute(GetLastSeenRequest $request) : GetLastSeenResponse 
     {
-        // find LastSeen for this user
-        // if none found
         try {
             /** @var UserLastSeen */
             $user = $this->userStore->findUser($request->getUserId());
@@ -30,7 +28,8 @@ class GetLastSeen {
             return new GetLastSeenResponse($user->isOnline(), $user->getLastSeen());
        
         } catch (UserLastSeenNotFound $ex) {
-            //if user is not known let's assume he is offline :D
+            // user is not known let's assume he is offline :D
+            // @todo may be seperate responsability and provide 2 classes of responses
             return new GetLastSeenResponse(false);
         }
     }

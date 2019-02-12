@@ -24,10 +24,11 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
     {
         $user = $this->find($id);
 
-        if ( $user) {
-            return $user;
+        if (!$user) {
+            throw new UserLastSeenNotFound($id);
         }
-        throw new UserLastSeenNotFound($id);
+
+        return $user;
     }
 
     /**

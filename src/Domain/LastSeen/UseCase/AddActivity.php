@@ -27,16 +27,11 @@ class AddActivity {
             /** @var UserLastSeen */
             $user = $this->userStore->findUser($request->getUserId());
 
-
             if ($request->getDate() > $user->getLastSeen()) {
                 $user->setLastSeen($request->getDate());
                 $this->userStore->persist($user);
             }
         } catch (UserLastSeenNotFound $ex) {
-            // @TODO we cannot new a UserLastSeen as it is an abstract class
-            // how to get a new UserLastSeen implementation?
-            // the store can produce one?
-            // $this->userStore->new($id, $date), ??
             $user = $this->userStore->new($request->getUserId(), $request->getDate());
             $this->userStore->persist($user);
         }

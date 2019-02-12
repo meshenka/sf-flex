@@ -40,18 +40,17 @@ class LastseenCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $user = $input->getArgument('user');
 
-        if ($user) {
-            $useCaseRequest = new GetLastSeenRequest($user);
-            $response = $this->getLastSeenUseCase->execute($useCaseRequest);
+        $useCaseRequest = new GetLastSeenRequest($user);
+        $response = $this->getLastSeenUseCase->execute($useCaseRequest);
 
-            $lastSeen = ($response->getLastSeen() instanceof \DateTime) ? $response->getLastSeen()->format('Y-m-d H:i:s') : 'false';
+        // @todo refactor to avoid this horror
+        $lastSeen = ($response->getLastSeen() instanceof \DateTime) ? $response->getLastSeen()->format('Y-m-d H:i:s') : 'false';
 
-            $io->writeln(sprintf('last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>', 
-                $user, 
-                $response->isOnline()? 'true': 'false', 
-                $lastSeen
-            ));
-        }
+        $io->writeln(sprintf('last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
+            $user, 
+            $response->isOnline()? 'true': 'false',
+            $lastSeen
+        ));
 
         $io->success('Done');
     }
