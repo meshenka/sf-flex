@@ -18,12 +18,9 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
 
     /**
      *
-     * @param string $id
-     *
-     * @return UserLastSeen
-     * @throws \App\Domain\LastSeen\Exception\UserLastSeenNotFound
+     *{@inheritDoc}
      */
-    public function findUser(string $id) : UserLastSeen
+    public function findUser(string $id)
     {
         $user = $this->find($id);
 

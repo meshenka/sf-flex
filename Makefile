@@ -129,7 +129,7 @@ fixture:
 
 stan: ## run static analysis
 stan:
-	$(STAN) analyse /app/src --level=max
+	$(STAN) analyse /app/src --level=4
 
 lint: ## lint
 lint: lf lt ly

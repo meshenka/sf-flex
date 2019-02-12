@@ -15,7 +15,7 @@ class LastseenCommand extends Command
 {
     protected static $defaultName = 'app:lastseen';
 
-    private $getLastSeen;
+    private $getLastSeenUseCase;
 
     public function __construct(GetLastSeen $getLastSeen)
     {
