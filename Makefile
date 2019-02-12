@@ -158,8 +158,10 @@ spec:
 unit: ## Run Phpspec
 unit:
 	-$(EXEC_PHP) ./bin/phpunit
-	
-.PHONY: spec unit
+
+behat: ## run behat tests
+	-$(EXEC_PHP) ./bin/behat
+.PHONY: spec unit behat
 
 phpmd: ## PHP Mess Detector (https://phpmd.org)
 	$(QA) phpmd src text .phpmd.xml
