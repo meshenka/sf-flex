@@ -43,10 +43,13 @@ class LastseenCommand extends Command
         if ($user) {
             $useCaseRequest = new GetLastSeenRequest($user);
             $response = $this->getLastSeenUseCase->execute($useCaseRequest);
+
+            $lastSeen = ($response->getLastSeen() instanceof \DateTime) ? $response->getLastSeen()->format('Y-m-d H:i:s') : 'false';
+
             $io->writeln(sprintf('last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>', 
                 $user, 
                 $response->isOnline()? 'true': 'false', 
-                $response->getLastSeen()->format('Y-m-d H:i:s')
+                $lastSeen
             ));
         }
 

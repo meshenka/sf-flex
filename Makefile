@@ -119,9 +119,10 @@ help: ## Makefile help
 ## -------
 ##
 
-QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
-ARTEFACTS = var/artefacts
-STAN = docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
+QA        	= docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
+ARTEFACTS 	= var/artefacts
+STAN 		= docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
+//PHPUNIT   	= docker run -v `pwd`:/app --rm phpunit/phpunit run
 
 fixture:
 	@$(SYMFONY) doctrine:fixture:load
@@ -154,7 +155,11 @@ spec: ## Run Phpspec
 spec:
 	-$(EXEC_PHP) ./bin/phpspec run -f pretty
 
-.PHONY: spec
+unit: ## Run Phpspec
+unit:
+	-$(EXEC_PHP) ./bin/phpunit
+	
+.PHONY: spec unit
 
 phpmd: ## PHP Mess Detector (https://phpmd.org)
 	$(QA) phpmd src text .phpmd.xml
