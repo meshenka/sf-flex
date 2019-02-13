@@ -31,19 +31,44 @@ class UserLastSeenController extends FOSRestController
 
     /**
      * @Route("/users/{userId}", name="user_is_online", methods="GET")
+     * 
+     * response body is a JSON
+     * {
+     *  "userId" <string>,
+     *  "online" "true" | "false"
+     *  "lastSeen"  DateTime<string> | "false" 
+     * }
+     * 
+     * Example for an user system do not know (notice lastSeen):
+     * <code>
+     * {
+     *  "userId": "dan@thedog.fr",
+     *  "online": "false",
+     *  "lastSeen": "false" 
+     * }
+     * </code>
+     * 
+     * Example for an user knowned to the system 
+     * <code>
+     * {
+     *  "userId": "john@thedog.fr",
+     *  "online": "true",
+     *  "lastSeen": 2019-02-12T15:28:05+01:00" 
+     * }
+     * </code>
      */
     public function isOnline(string $userId)
     {
         $useCaseRequest = new GetLastSeenRequest($userId);
         $response = $this->getLastSeenUseCase->execute($useCaseRequest);
 
-        $rest = [
+        $data = [
             "userId" => $userId,
             "online" => $response->isOnline(),
             "lastSeen" => $response->getLastSeen()
         ];
 
-        return $this->view($rest, Response::HTTP_OK);
+        return $this->view($data, Response::HTTP_OK);
     }
 
     /**
