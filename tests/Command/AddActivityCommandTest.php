@@ -40,8 +40,8 @@ class AddActiityCommandTest extends KernelTestCase
 
         $commandTester->execute([
             'command'  => $command->getName(),
+            'lastseen' => $date->format(\DateTime::RFC3339),
             'user' => 'new.2@phpunit',
-            'date' => $date->format("Y-m-d H:i:s")
         ]);
 
         // the output of the command in the console
