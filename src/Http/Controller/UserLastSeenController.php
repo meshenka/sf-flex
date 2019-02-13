@@ -36,7 +36,7 @@ class UserLastSeenController extends FOSRestController
      * {
      *  "userId" <string>,
      *  "online" "true" | "false"
-     *  "lastSeen"  DateTime<string> | "false" 
+     *  "lastSeen"  <DateTime\RFC3339 string> | "false" 
      * }
      * 
      * Example for an user system do not know (notice lastSeen):
