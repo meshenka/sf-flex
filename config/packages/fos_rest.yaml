@@ -16,8 +16,8 @@ fos_rest:
           'application/x-json',
           'application/vnd.example-com.foo+json',
         ]
-  # exception:
-  # enabled: true
+  exception:
+    enabled: true
   # exception_controller: FOS\RestBundle\Controller\ExceptionController
   #        codes:
   #            App\Exception\MyException: 403
