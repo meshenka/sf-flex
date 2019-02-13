@@ -10,6 +10,7 @@ use App\Storage\UserLastSeenEntity;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
 use App\Domain\LastSeen\UseCase\Response\GetLastSeenResponse;
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
+use Psr\Log\NullLogger;
 
 class GetLastSeenSpec extends ObjectBehavior
 {
@@ -18,7 +19,7 @@ class GetLastSeenSpec extends ObjectBehavior
     public function let(UserLastSeenStore $store) {
         $this->store = $store;
         
-        $this->beConstructedWith($store);
+        $this->beConstructedWith($store, new NullLogger());
         
     }
 
