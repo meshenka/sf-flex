@@ -78,6 +78,6 @@ abstract class UserLastSeen
     {
         $onlineTime = (new \DateTime())->modify('-20 seconds');
 
-        return ($this->lastSeen >= $onlineTime) ? true : false;
+        return ($this->lastSeen >= $onlineTime);
     }
 }
