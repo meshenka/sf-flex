@@ -2,6 +2,6 @@
 
 namespace App\Domain\LastSeen\UseCase\Response;
 
-class AddActivityResponse {
-   
+class AddActivityResponse
+{
 }

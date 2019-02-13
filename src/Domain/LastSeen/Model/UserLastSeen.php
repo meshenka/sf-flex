@@ -2,11 +2,12 @@
 /**
  * @author Sylvain Gogel <sylvain.gogel@gmail.com>
  * @license MIT
- * 
+ *
  */
 namespace App\Domain\LastSeen\Model;
 
-abstract class UserLastSeen {
+abstract class UserLastSeen
+{
 
     /**
      * @var string
@@ -23,7 +24,7 @@ abstract class UserLastSeen {
      * Get the value of id
      *
      * @return  string
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -35,7 +36,7 @@ abstract class UserLastSeen {
      * @param  string  $id
      *
      * @return  self
-     */ 
+     */
     public function setId(string $id)
     {
         $this->id = $id;
@@ -47,7 +48,7 @@ abstract class UserLastSeen {
      * Get the value of lastSeen
      *
      * @return  \DateTime
-     */ 
+     */
     public function getLastSeen()
     {
         return $this->lastSeen;
@@ -59,7 +60,7 @@ abstract class UserLastSeen {
      * @param  \DateTime  $lastSeen
      *
      * @return  self
-     */ 
+     */
     public function setLastSeen(\DateTime $lastSeen)
     {
         $this->lastSeen = $lastSeen;
@@ -69,11 +70,11 @@ abstract class UserLastSeen {
 
     /**
      * Business rule, a User is considered online
-     * if lastSeen is 20s old or less 
+     * if lastSeen is 20s old or less
      *
      * @return bool
      */
-    public function isOnline() 
+    public function isOnline()
     {
         $onlineTime = (new \DateTime())->modify('-20 seconds');
 

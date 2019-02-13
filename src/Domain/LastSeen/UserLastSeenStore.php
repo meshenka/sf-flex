@@ -4,8 +4,8 @@ namespace App\Domain\LastSeen;
 
 use App\Domain\LastSeen\Model\UserLastSeen;
 
-
-interface UserLastSeenStore {
+interface UserLastSeenStore
+{
 
     /**
      *
@@ -17,7 +17,7 @@ interface UserLastSeenStore {
     public function findUser(string $id);
 
     /**
-     * 
+     *
      * @param \App\Domain\LastSeen\Model\UserLastSeen $user
      * @return void
      */
@@ -32,5 +32,4 @@ interface UserLastSeenStore {
      * @return \App\Domain\LastSeen\Model\UserLastSeen
      */
     public function new(string $id, \DateTime $date): UserLastSeen;
-
 }

@@ -14,10 +14,9 @@ class AppFixtures extends Fixture
         $objectSet = $loader->loadFile(__DIR__ . '/../../fixtures/10_userlastseen.yaml')->getObjects();
     
         foreach ($objectSet as $object) {
-            $manager->persist($object); 
+            $manager->persist($object);
         }
         
         $manager->flush();
     }
 }
-

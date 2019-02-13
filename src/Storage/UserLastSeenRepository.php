@@ -9,8 +9,8 @@ use App\Domain\LastSeen\Model\UserLastSeen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class UserLastSeenRepository extends ServiceEntityRepository implements UserLastSeenStore {
-    
+class UserLastSeenRepository extends ServiceEntityRepository implements UserLastSeenStore
+{
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, UserLastSeenEntity::class);
@@ -32,7 +32,7 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
     }
 
     /**
-     * 
+     *
      * @param \App\Domain\LastSeen\Model\UserLastSeen $user
      * @return void
      */
@@ -50,7 +50,8 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
      *
      * @return \App\Domain\LastSeen\Model\UserLastSeen
      */
-    public function new(string $id, \DateTime $date): UserLastSeen {
+    public function new(string $id, \DateTime $date): UserLastSeen
+    {
         return (new UserLastSeenEntity())->setId($id)->setLastSeen($date);
     }
 }

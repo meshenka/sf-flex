@@ -2,7 +2,6 @@
 
 namespace App\Http\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +38,7 @@ class UserLastSeenController extends FOSRestController
         $response = $this->getLastSeenUseCase->execute($useCaseRequest);
 
         $rest = [
-            "userId" => $userId, 
+            "userId" => $userId,
             "online" => $response->isOnline(),
             "lastSeen" => $response->getLastSeen()
         ];
@@ -52,9 +51,9 @@ class UserLastSeenController extends FOSRestController
      */
     public function addActivity(string $userId, Request $request)
     {
-        $useCaseRequest = new AddActivityRequest($userId, new \DateTime($request->get('date')) );
+        $useCaseRequest = new AddActivityRequest($userId, new \DateTime($request->get('date')));
         $this->addActivityUseCase->execute($useCaseRequest); //no need for the useCaseResponse
 
         return $this->view(null, Response::HTTP_NO_CONTENT);
-    }    
+    }
 }

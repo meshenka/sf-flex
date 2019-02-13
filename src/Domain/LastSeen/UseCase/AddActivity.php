@@ -8,17 +8,18 @@ use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\AddActivityResponse;
 use App\Domain\LastSeen\Model\UserLastSeen;
 
-class AddActivity {
+class AddActivity
+{
 
     /** @var UserLastSeenStore */
     private $userStore;
 
     public function __construct(UserLastSeenStore $userStore)
     {
-        $this->userStore = $userStore;        
+        $this->userStore = $userStore;
     }
 
-    public function execute(AddActivityRequest $request) : AddActivityResponse 
+    public function execute(AddActivityRequest $request) : AddActivityResponse
     {
         // find LastSeen for this user
         // if none found, create a new one and returns
@@ -38,6 +39,5 @@ class AddActivity {
 
         //there is no data carried out of the response
         return new AddActivityResponse();
- 
     }
 }

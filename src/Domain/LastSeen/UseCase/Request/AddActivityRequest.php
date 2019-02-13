@@ -2,7 +2,8 @@
 
 namespace App\Domain\LastSeen\UseCase\Request;
 
-class AddActivityRequest {
+class AddActivityRequest
+{
     /** @var string */
     private $userId;
 
@@ -17,7 +18,7 @@ class AddActivityRequest {
 
     /**
      * Get the value of userId
-     */ 
+     */
     public function getUserId()
     {
         return $this->userId;
@@ -25,10 +26,9 @@ class AddActivityRequest {
 
     /**
      * Get the value of date
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
     }
-
 }

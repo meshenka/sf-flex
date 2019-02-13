@@ -2,7 +2,8 @@
 
 namespace App\Domain\LastSeen\UseCase\Request;
 
-class GetLastSeenRequest {
+class GetLastSeenRequest
+{
 
     /** @var string */
     private $userId;
@@ -14,10 +15,9 @@ class GetLastSeenRequest {
 
     /**
      * Get the value of userId
-     */ 
+     */
     public function getUserId()
     {
         return $this->userId;
     }
-
 }

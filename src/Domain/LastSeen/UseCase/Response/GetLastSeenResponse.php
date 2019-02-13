@@ -2,7 +2,8 @@
 
 namespace App\Domain\LastSeen\UseCase\Response;
 
-class GetLastSeenResponse {
+class GetLastSeenResponse
+{
 
     /** @var bool */
     private $online;
@@ -12,13 +13,13 @@ class GetLastSeenResponse {
    
     public function __construct(bool $status, $lastSeen = false)
     {
-        $this->online = $status;        
+        $this->online = $status;
         $this->lastSeen = $lastSeen;
     }
     
     /**
      * Get the value of isOnline
-     */ 
+     */
     public function isOnline() : bool
     {
         return $this->online;
@@ -26,7 +27,7 @@ class GetLastSeenResponse {
 
     /**
      * Get the value of lastSeen
-     */ 
+     */
     public function getLastSeen()
     {
         return $this->lastSeen;
