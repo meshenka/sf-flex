@@ -10,12 +10,12 @@ use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\AddActivity;
 use App\Domain\LastSeen\UseCase\GetLastSeen;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 
 /**
  * @Route("/api")
  */
-class UserLastSeenController extends FOSRestController
+class UserLastSeenController extends AbstractFOSRestController
 {
     /** @var AddActivity */
     private $addActivityUseCase;

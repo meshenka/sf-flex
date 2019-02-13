@@ -4,12 +4,12 @@ namespace App\Http\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 
 /**
  * @Route("/api")
  */
-class PingController extends FOSRestController
+class PingController extends AbstractFOSRestController
 {
     /**
      * @Route("/_internal/healthcheck", name="app_ping", methods="GET")
