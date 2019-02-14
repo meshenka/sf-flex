@@ -3,8 +3,18 @@
 # Add steps that run tests, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/php
 
+resources:
+  containers:
+    container: db
+    image: mariadb:10.3
+    env:
+    - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
 trigger:
-- master
+  - master
+
+services:
+  db: db
 
 pool:
   vmImage: 'Ubuntu-16.04'
@@ -13,31 +23,51 @@ variables:
   phpVersion: 7.2
   nodeVersion: 10.15
 
-steps:
-- task: NodeTool@0 
-  inputs:
-    versionSpec: $(nodeVersion)
-    displayName: 'Use node $(nodeVersion)'
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
+jobs:
+  - job: Setup
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(nodeVersion)
+          displayName: 'Use node $(nodeVersion)'
+      - script: |
+          sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+          sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+          sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+          sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+          sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+          php -version
+        displayName: 'Use PHP version $(phpVersion)'
 
-- script: npm i -g yarn
-  displayName: 'install yarn'
+      - script: composer install --no-interaction --prefer-dist --optimize-autoloader
+        displayName: 'composer install'
 
-- script: yarn install
-  displayName: 'install front end dependencies'
+      - script: npm i -g yarn
+        displayName: 'install yarn'
 
-- script: yarn run build
-  displayName: 'build front end dependencies'
+      - script: yarn install
+        displayName: 'install front end dependencies'
 
-- script: composer install --no-interaction --prefer-dist --optimize-autoloader
-  displayName: 'composer install'
+  - job: Build
+    dependsOn: Setup
+    steps:
+      - script: yarn run build
+        displayName: 'build front end dependencies'
 
-- script: ./bin/phpspec run -f pretty
-  displayName: run phpspec
+  - job: Tests
+    dependsOn: Setup
+    steps:
+      - script: ./bin/phpspec run -f pretty
+        displayName: 'Unit tests'
+
+      - script: |
+        ./bin/console doctrine:database:create
+        ./bin/console doctrine:schema:create
+        ./bin/console doctrine:fixture:load
+        displayName: 'Setup database'
+
+      - script: ./bin/behat
+        displayName: Http Integration tests
+
+      - script: ./bin/phpunit
+        displayName: Http Integration tests
