@@ -122,7 +122,6 @@ help: ## Makefile help
 QA        	= docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
 ARTEFACTS 	= var/artefacts
 STAN 		= docker run --rm -v `pwd`:/app --rm phpstan/phpstan:0.11
-//PHPUNIT   	= docker run -v `pwd`:/app --rm phpunit/phpunit run
 
 fixture:
 	@$(SYMFONY) doctrine:fixture:load

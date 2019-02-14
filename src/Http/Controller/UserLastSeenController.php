@@ -11,6 +11,8 @@ use App\Domain\LastSeen\UseCase\AddActivity;
 use App\Domain\LastSeen\UseCase\GetLastSeen;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use App\Http\Form\ActivityType;
+use App\Http\Form\ActivityDto;
 
 /**
  * @Route("/api")
@@ -31,29 +33,29 @@ class UserLastSeenController extends AbstractFOSRestController
 
     /**
      * @Route("/users/{userId}", name="user_is_online", methods="GET")
-     * 
+     *
      * response body is a JSON
      * {
      *  "userId" <string>,
      *  "online" "true" | "false"
-     *  "lastSeen"  <DateTime\RFC3339 string> | "false" 
+     *  "lastSeen"  <DateTime\RFC3339 string> | "false"
      * }
-     * 
+     *
      * Example for an user system do not know (notice lastSeen):
      * <code>
      * {
      *  "userId": "dan@thedog.fr",
      *  "online": "false",
-     *  "lastSeen": "false" 
+     *  "lastSeen": "false"
      * }
      * </code>
-     * 
-     * Example for an user knowned to the system 
+     *
+     * Example for an user knowned to the system
      * <code>
      * {
      *  "userId": "john@thedog.fr",
      *  "online": "true",
-     *  "lastSeen": 2019-02-12T15:28:05+01:00" 
+     *  "lastSeen": 2019-02-12T15:28:05+01:00"
      * }
      * </code>
      */
@@ -73,11 +75,30 @@ class UserLastSeenController extends AbstractFOSRestController
 
     /**
      * @Route("/users/{userId}", name="user_add_activity", methods="PUT")
+     *
+     * Request body is a JSON, as presented in example:
+     * <code>
+     * {
+     *  "date" : "2019-02-13T16:11:46+01:00"
+     * }
+     * </code>
+     *
+     * with date is a RFC3339 formated date.
+     *
      */
     public function addActivity(string $userId, Request $request)
     {
-        $useCaseRequest = new AddActivityRequest($userId, new \DateTime($request->get('date')));
-        $this->addActivityUseCase->execute($useCaseRequest); //no need for the useCaseResponse
+        $form = $this->createForm(ActivityType::class, new ActivityDto(), array('method' => Request::METHOD_PUT));
+        $form->submit($request->request->all());
+
+        if (false === $form->isValid()) {
+            return $this->view($form);
+        }
+
+        $activity = $form->getData();
+
+        $useCaseRequest = new AddActivityRequest($userId, $activity->getDate());
+        $this->addActivityUseCase->execute($useCaseRequest);
 
         return $this->view(null, Response::HTTP_NO_CONTENT);
     }
