@@ -23,7 +23,6 @@ class LastseenCommand extends Command
         // then set your own properties. That wouldn't work in this case
         // because configure() needs the properties set in this constructor
         $this->getLastSeenUseCase = $getLastSeen;
-
         parent::__construct();
     }
 
@@ -44,11 +43,12 @@ class LastseenCommand extends Command
         $response = $this->getLastSeenUseCase->execute($useCaseRequest);
 
         // @todo refactor to avoid this horror
-        $lastSeen = ($response->getLastSeen() instanceof \DateTime) ? $response->getLastSeen()->format('Y-m-d H:i:s') : 'false';
-
-        $io->writeln(sprintf('last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
-            $user, 
-            $response->isOnline()? 'true': 'false',
+        $lastSeen = ($response->getLastSeen()) ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'false';
+        
+        $io->writeln(sprintf(
+            'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
+            $user,
+            json_encode($response->isOnline()),
             $lastSeen
         ));
 

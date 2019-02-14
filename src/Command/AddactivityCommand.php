@@ -27,6 +27,7 @@ class AddactivityCommand extends Command
         // because configure() needs the properties set in this constructor
         $this->addActivityUseCase = $addActivityUseCase;
         $this->getLastSeenUseCase = $getLastSeenUseCase;
+
         parent::__construct();
     }
     protected function configure()
@@ -34,7 +35,7 @@ class AddactivityCommand extends Command
         $this
             ->setDescription('Update activity for a user')
             ->addArgument('user', InputArgument::REQUIRED, 'User ID')
-            ->addArgument('date', InputArgument::OPTIONAL, 'A Date, now if argument not set. Ex "2000-01-01"')
+            ->addArgument('lastseen', InputArgument::OPTIONAL, 'A Date, now if argument not set. Ex "2000-01-01"')
         ;
     }
 
@@ -42,7 +43,7 @@ class AddactivityCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $user = $input->getArgument('user');
-        $dateString = $input->getArgument('date');
+        $dateString = $input->getArgument('lastseen');
 
         $date = new \DateTime($dateString);
     
@@ -51,11 +52,12 @@ class AddactivityCommand extends Command
         $response = $this->findUser($user);
 
         // @todo try to avoid this horror
-        $lastSeen = ($response->getLastSeen() instanceof \DateTime) ? $response->getLastSeen()->format('Y-m-d H:i:s') : 'false';
+        $lastSeen = ($response->getLastSeen()) ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'false';
 
-        $io->writeln(sprintf('last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>', 
+        $io->writeln(sprintf(
+            'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
             $user,
-            $response->isOnline()? 'true': 'false', 
+            json_encode($response->isOnline()),
             $lastSeen
         ));
      
