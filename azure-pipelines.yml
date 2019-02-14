@@ -61,9 +61,9 @@ jobs:
         displayName: 'Unit tests'
 
       - script: |
-        ./bin/console doctrine:database:create
-        ./bin/console doctrine:schema:create
-        ./bin/console doctrine:fixture:load
+        ./bin/console doctrine\:database\:create
+        ./bin/console doctrine\:schema\:create
+        ./bin/console doctrine\:fixture\:load
         displayName: 'Setup database'
 
       - script: ./bin/behat
