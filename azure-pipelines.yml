@@ -67,7 +67,7 @@ jobs:
         displayName: 'Setup database'
 
       - script: ./bin/behat
-        displayName: Http Integration tests
+        displayName: 'Http Integration tests'
 
       - script: ./bin/phpunit
-        displayName: Http Integration tests
+        displayName: 'Http Integration tests'
