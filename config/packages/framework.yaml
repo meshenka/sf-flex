@@ -8,7 +8,8 @@ framework:
     #session:
     #    # With this config, PHP's native session handling is used
     #    handler_id: ~
-
+    templating:
+        engines: ['twig']
     #esi: ~
     #fragments: ~
     php_errors:

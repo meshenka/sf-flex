@@ -1,0 +1,5 @@
+App\Http\Form\ActivityDto:
+  properties:
+    date:
+      - NotBlank: ~
+      - Type: \DateTime

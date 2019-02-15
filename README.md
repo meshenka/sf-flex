@@ -1,9 +1,13 @@
 
 # Symfony 4 Flex Demo App
 
-[![Build Status](https://dev.azure.com/sylvaingogel/sylvaingogel/_apis/build/status/meshenka.sf-flex?branchName=master)](https://dev.azure.com/sylvaingogel/sylvaingogel/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/sylvaingogel/sylvaingogel/_apis/build/status/meshenka.sf-flex?branchName=master)](https://dev.azure.com/sylvaingogel/sylvaingogel/_build/latest?definitionId=1&branchName=master) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-A first test project with Symfony4 and Semver
+A first test project with Symfony4 and Semver:
+
+* A "Last Seen" Microservice allowing to register user activity and query if a user is online or last seen
+* REST Style API
+* Secured with stateless JWT validation
 
 ## Requirements
 
@@ -61,3 +65,4 @@ make start # start project, after initial make install
 * Configure Symfony for non standard Namespaces
 * PHP Stan <https://github.com/phpstan/phpstan>
 * Autowiring + Autoconfigure + Type Hints
+* Azure Pipeline CI integration
