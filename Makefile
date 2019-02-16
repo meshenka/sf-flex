@@ -178,7 +178,7 @@ phpdcd: ## PHP Dead Code Detector (https://github.com/sebastianbergmann/phpdcd)
 	$(QA) phpdcd src
 
 apply-php-cs-fixer: ## apply php-cs-fixer fixes
-	$(QA) php-cs-fixer fix --using-cache=no --verbose --diff
+	$(QA) php-cs-fixer fix --using-cache=no --verbose --diff src/
 
 artefacts:
 	mkdir -p $(ARTEFACTS)

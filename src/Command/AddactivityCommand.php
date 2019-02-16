@@ -12,6 +12,7 @@ use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\AddActivity;
 use App\Domain\LastSeen\UseCase\GetActivity;
 use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
+use App\Command\Formatter\GetActivityResponseFormatter;
 
 class AddactivityCommand extends Command
 {
@@ -45,20 +46,18 @@ class AddactivityCommand extends Command
         $user = $input->getArgument('user');
         $dateString = $input->getArgument('lastseen');
 
-        $date = new \DateTime($dateString);
+        $date = new \DateTime($dateString);  //will produce now if $dateString is null
     
         $useCaseRequest = new AddActivityRequest($user, $date);
         $this->addActivityUseCase->execute($useCaseRequest);
         $response = $this->findUser($user);
-
-        // @todo try to avoid this horror
-        $lastSeen = $response->getLastSeen()->format(\DateTime::RFC3339);
+        $response = new GetActivityResponseFormatter($response);
 
         $io->writeln(sprintf(
             'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
-            $user,
-            strval($response->isOnline()),
-            $lastSeen
+            $response->getId(),
+            $response->isOnline(),
+            $response->getLastSeen()
         ));
      
         $io->success('Done!');
