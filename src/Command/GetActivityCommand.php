@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use App\Domain\LastSeen\UseCase\GetActivity;
-use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
+use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 
 class GetActivityCommand extends Command
 {
@@ -40,7 +40,7 @@ class GetActivityCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $user = $input->getArgument('user');
 
-        $useCaseRequest = new GetLastSeenRequest($user);
+        $useCaseRequest = new GetActivityRequest($user);
         $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         // @todo refactor to avoid this horror

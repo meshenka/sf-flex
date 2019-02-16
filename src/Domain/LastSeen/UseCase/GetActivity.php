@@ -4,7 +4,7 @@ namespace App\Domain\LastSeen\UseCase;
 
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
 use App\Domain\LastSeen\UserLastSeenStore;
-use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest; // @todo rename this GetActivityRequest
+use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\GetActivityResponse;
 use App\Domain\LastSeen\UseCase\Response\GetUserActivityResponse;
 use App\Domain\LastSeen\UseCase\Response\GetNullActivityResponse;
@@ -27,7 +27,7 @@ class GetActivity
         $this->logger = $logger;
     }
 
-    public function execute(GetLastSeenRequest $request) : GetActivityResponse
+    public function execute(GetActivityRequest $request) : GetActivityResponse
     {
         try {
             /** @var UserLastSeen */

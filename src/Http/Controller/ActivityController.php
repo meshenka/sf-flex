@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\AddActivity;
 use App\Domain\LastSeen\UseCase\GetActivity;
-use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
+use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use App\Http\Form\ActivityType;
 use App\Http\Form\ActivityDto;
@@ -61,7 +61,7 @@ class ActivityController extends AbstractFOSRestController
      */
     public function isOnline(string $userId)
     {
-        $useCaseRequest = new GetLastSeenRequest($userId);
+        $useCaseRequest = new GetActivityRequest($userId);
         $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         $data = [

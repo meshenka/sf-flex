@@ -7,7 +7,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use App\Domain\LastSeen\UserLastSeenStore;
 use App\Storage\UserLastSeenEntity;
-use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
+use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\GetActivityResponse;
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
 use Psr\Log\NullLogger;
@@ -38,7 +38,7 @@ class GetActivitySpec extends ObjectBehavior
         $this->store->findUser("phpspec")->willReturn($user);
 
         //usecase with 1 day old last activity
-        $request = new GetLastSeenRequest("phpspec");
+        $request = new GetActivityRequest("phpspec");
         $response = $this->execute($request);
         $response->shouldHaveType(GetActivityResponse::class);
         $response->isOnline()->shouldBe(false);
@@ -61,7 +61,7 @@ class GetActivitySpec extends ObjectBehavior
         $this->store->findUser("phpspec")->willThrow(UserLastSeenNotFound::class);
 
         //usecase
-        $request = new GetLastSeenRequest("phpspec");
+        $request = new GetActivityRequest("phpspec");
         $response = $this->execute($request);
         $response->shouldHaveType(GetActivityResponse::class);
         $response->isOnline()->shouldBe(false);
