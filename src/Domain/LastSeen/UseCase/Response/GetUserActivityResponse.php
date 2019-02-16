@@ -2,8 +2,10 @@
 
 namespace App\Domain\LastSeen\UseCase\Response;
 
-class GetLastSeenResponse
+class GetUserActivityResponse implements GetActivityResponse
 {
+    /** @var string */
+    private $id;
 
     /** @var bool */
     private $online;
@@ -11,8 +13,9 @@ class GetLastSeenResponse
     /** @var \DateTime */
     private $lastSeen;
    
-    public function __construct(bool $status, $lastSeen = false)
+    public function __construct(string $id, bool $status, \DateTime $lastSeen)
     {
+        $this->id = $id;
         $this->online = $status;
         $this->lastSeen = $lastSeen;
     }
@@ -28,8 +31,21 @@ class GetLastSeenResponse
     /**
      * Get the value of lastSeen
      */
-    public function getLastSeen()
+    public function getLastSeen() : ?\DateTime
     {
         return $this->lastSeen;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId() : string
+    {
+        return $this->id;
+    }
+
+    public function isKnowned(): bool 
+    {
+        return true;
     }
 }

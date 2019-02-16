@@ -2,17 +2,17 @@
 
 namespace spec\App\Domain\LastSeen\UseCase;
 
-use App\Domain\LastSeen\UseCase\GetLastSeen;
+use App\Domain\LastSeen\UseCase\GetActivity;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use App\Domain\LastSeen\UserLastSeenStore;
 use App\Storage\UserLastSeenEntity;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
-use App\Domain\LastSeen\UseCase\Response\GetLastSeenResponse;
+use App\Domain\LastSeen\UseCase\Response\GetActivityResponse;
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
 use Psr\Log\NullLogger;
 
-class GetLastSeenSpec extends ObjectBehavior
+class GetActivitySpec extends ObjectBehavior
 {
     public $store;
 
@@ -25,7 +25,7 @@ class GetLastSeenSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType(GetLastSeen::class);
+        $this->shouldHaveType(GetActivity::class);
     }
 
     public function it_get_status_from_model_for_existing_user() {
@@ -40,17 +40,20 @@ class GetLastSeenSpec extends ObjectBehavior
         //usecase with 1 day old last activity
         $request = new GetLastSeenRequest("phpspec");
         $response = $this->execute($request);
-        $response->shouldHaveType(GetLastSeenResponse::class);
+        $response->shouldHaveType(GetActivityResponse::class);
         $response->isOnline()->shouldBe(false);
         $response->getLastSeen()->shouldHaveType(\DateTime::class);
+        $response->isKnowned()->shouldBe(true);
+        
 
         //use case with a recent last activity
         $user->setLastSeen(new \DateTime());
         $response = $this->execute($request);
-        $response->shouldHaveType(GetLastSeenResponse::class);
+        $response->shouldHaveType(GetActivityResponse::class);
         $response->isOnline()->shouldBe(true);
         $response->getLastSeen()->shouldHaveType(\DateTime::class);
-
+        $response->isKnowned()->shouldBe(true);
+        
     }
 
     public function it_always_return_offline_status_for_non_existing_user_id(){
@@ -60,9 +63,10 @@ class GetLastSeenSpec extends ObjectBehavior
         //usecase
         $request = new GetLastSeenRequest("phpspec");
         $response = $this->execute($request);
-        $response->shouldHaveType(GetLastSeenResponse::class);
+        $response->shouldHaveType(GetActivityResponse::class);
         $response->isOnline()->shouldBe(false);
-        $response->getLastSeen()->shouldBe(false);
+        $response->getLastSeen()->shouldBe(null);
+        $response->isKnowned()->shouldBe(false);
         
     }
 

@@ -18,6 +18,7 @@ Feature:
       | userId | 10@fixture.loc |
     And the JSON node "online" should exist
     And the JSON node "lastSeen" should exist
+    And the JSON node "knowned" should be true
 
   Scenario: Check for an unknown user
     When I add "Content-Type" header equal to "application/json"
@@ -29,4 +30,6 @@ Feature:
     And the JSON nodes should contain:
       | userId | phpspec |
     And the JSON node "online" should be false
-    And the JSON node "lastSeen" should be false
+    And the JSON node "lastSeen" should be null
+    And the JSON node "knowned" should be false
+    

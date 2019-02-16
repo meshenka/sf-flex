@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\AddActivity;
-use App\Domain\LastSeen\UseCase\GetLastSeen;
+use App\Domain\LastSeen\UseCase\GetActivity;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
 
 class AddactivityCommand extends Command
@@ -18,15 +18,15 @@ class AddactivityCommand extends Command
     protected static $defaultName = 'app:addactivity';
     
     private $addActivityUseCase;
-    private $getLastSeenUseCase;
+    private $getActivityUseCase;
 
-    public function __construct(AddActivity $addActivityUseCase, GetLastSeen $getLastSeenUseCase)
+    public function __construct(AddActivity $addActivityUseCase, GetActivity $getActivityUseCase)
     {
         // best practices recommend to call the parent constructor first and
         // then set your own properties. That wouldn't work in this case
         // because configure() needs the properties set in this constructor
         $this->addActivityUseCase = $addActivityUseCase;
-        $this->getLastSeenUseCase = $getLastSeenUseCase;
+        $this->getActivityUseCase = $getActivityUseCase;
 
         parent::__construct();
     }
@@ -67,7 +67,7 @@ class AddactivityCommand extends Command
     private function findUser(string $userId)
     {
         $useCaseRequest = new GetLastSeenRequest($userId);
-        $response = $this->getLastSeenUseCase->execute($useCaseRequest);
+        $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         return $response;
     }

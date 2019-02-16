@@ -8,21 +8,22 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use App\Domain\LastSeen\UseCase\GetLastSeen;
+use App\Domain\LastSeen\UseCase\GetActivity;
 use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
 
-class LastseenCommand extends Command
+class GetActivityCommand extends Command
 {
     protected static $defaultName = 'app:lastseen';
 
-    private $getLastSeenUseCase;
+    /** @var GetActivity */
+    private $getActivityUseCase;
 
-    public function __construct(GetLastSeen $getLastSeen)
+    public function __construct(GetActivity $getActivityUseCase)
     {
         // best practices recommend to call the parent constructor first and
         // then set your own properties. That wouldn't work in this case
         // because configure() needs the properties set in this constructor
-        $this->getLastSeenUseCase = $getLastSeen;
+        $this->getActivityUseCase = $getActivityUseCase;
         parent::__construct();
     }
 
@@ -40,10 +41,10 @@ class LastseenCommand extends Command
         $user = $input->getArgument('user');
 
         $useCaseRequest = new GetLastSeenRequest($user);
-        $response = $this->getLastSeenUseCase->execute($useCaseRequest);
+        $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         // @todo refactor to avoid this horror
-        $lastSeen = ($response->getLastSeen()) ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'false';
+        $lastSeen = ($response->getLastSeen()) ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'null';
         
         $io->writeln(sprintf(
             'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
