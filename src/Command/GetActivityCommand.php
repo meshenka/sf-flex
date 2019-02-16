@@ -43,16 +43,23 @@ class GetActivityCommand extends Command
         $useCaseRequest = new GetActivityRequest($user);
         $response = $this->getActivityUseCase->execute($useCaseRequest);
 
-        // @todo refactor to avoid this horror
-        $lastSeen = ($response->getLastSeen()) ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'null';
-        
-        $io->writeln(sprintf(
-            'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
-            $user,
-            json_encode($response->isOnline()),
-            $lastSeen
+        if ($response->isKnowned()) {
+
+            $io->writeln(sprintf(
+                'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment> ',
+                $response->getId(),
+                $response->isOnline() ? 'true' : 'false',
+                $response->getLastSeen()->format(\DateTime::RFC3339)
+            ));
+
+            $io->success('Done');
+            return;
+        }
+
+        $io->warning(sprintf(
+            'user %s unknowned',
+            $response->getId()
         ));
 
-        $io->success('Done');
     }
 }

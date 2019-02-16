@@ -37,7 +37,6 @@ class GetActivity
         } catch (UserLastSeenNotFound $ex) {
             $this->logger->warning("Requested user id unknown", ['userId' => $request->getUserId()]);
             // user is not known let's assume he is offline :D
-            // @todo may be seperate responsability and provide 2 classes of responses
             return new GetNullActivityResponse($request->getUserId());
         }
     }
