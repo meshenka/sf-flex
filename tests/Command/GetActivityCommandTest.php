@@ -1,14 +1,12 @@
 <?php
 
-// tests/Command/CreateUserCommandTest.php
 namespace App\Tests\Command;
 
-use App\Command\LastseenCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class LastSeenCommandTest extends KernelTestCase
+class GetActivityommandTest extends KernelTestCase
 {
     public function testNonExistingUser()
     {
