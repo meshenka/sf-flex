@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use App\Domain\LastSeen\UseCase\GetActivity;
 use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
+use App\Command\Formatter\GetActivityResponseFormatter;
 
 class GetActivityCommand extends Command
 {
@@ -44,22 +45,21 @@ class GetActivityCommand extends Command
         $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         if ($response->isKnowned()) {
-
+            $response = new GetActivityResponseFormatter($response);
             $io->writeln(sprintf(
                 'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment> ',
                 $response->getId(),
-                $response->isOnline() ? 'true' : 'false',
-                $response->getLastSeen()->format(\DateTime::RFC3339)
+                $response->isOnline(),
+                $response->getLastSeen()
             ));
 
             $io->success('Done');
-            return;
+            return 0;
         }
 
         $io->warning(sprintf(
             'user %s unknowned',
             $response->getId()
         ));
-
     }
 }

@@ -38,13 +38,13 @@ class GetUserActivityResponse implements GetActivityResponse
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId() : string
     {
         return $this->id;
     }
 
-    public function isKnowned(): bool 
+    public function isKnowned(): bool
     {
         return true;
     }
