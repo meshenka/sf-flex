@@ -37,16 +37,18 @@ class ActivityController extends AbstractFOSRestController
      * response body is a JSON
      * {
      *  "userId" <string>,
-     *  "online" "true" | "false"
-     *  "lastSeen"  <DateTime\RFC3339 string> | "false"
+     *  "online" <bool>
+     *  "lastSeen"  <DateTime\RFC3339 string> | "null"
+     *  "knowned" <bool>
      * }
      *
-     * Example for an user system do not know (notice lastSeen):
+     * Example for an user system do not know (notice lastSeen and knowned):
      * <code>
      * {
      *  "userId": "dan@thedog.fr",
      *  "online": "false",
-     *  "lastSeen": "false"
+     *  "lastSeen": "null",
+     *  "knowned": "false"
      * }
      * </code>
      *
@@ -55,7 +57,8 @@ class ActivityController extends AbstractFOSRestController
      * {
      *  "userId": "john@thedog.fr",
      *  "online": "true",
-     *  "lastSeen": 2019-02-12T15:28:05+01:00"
+     *  "lastSeen": 2019-02-12T15:28:05+01:00",
+     *  "knowned": "true"
      * }
      * </code>
      */
