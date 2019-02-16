@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\AddActivity;
-use App\Domain\LastSeen\UseCase\GetLastSeen;
-use App\Domain\LastSeen\UseCase\Request\GetLastSeenRequest;
+use App\Domain\LastSeen\UseCase\GetActivity;
+use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use App\Http\Form\ActivityType;
 use App\Http\Form\ActivityDto;
@@ -17,18 +17,18 @@ use App\Http\Form\ActivityDto;
 /**
  * @Route("/api")
  */
-class UserLastSeenController extends AbstractFOSRestController
+class ActivityController extends AbstractFOSRestController
 {
     /** @var AddActivity */
     private $addActivityUseCase;
 
-    /** @var GetLastSeen */
-    private $getLastSeenUseCase;
+    /** @var GetActivity */
+    private $getActivityUseCase;
 
-    public function __construct(AddActivity $addActivity, GetLastSeen $getLastSeen)
+    public function __construct(AddActivity $addActivityUseCase, GetActivity $getActivityUseCase)
     {
-        $this->addActivityUseCase = $addActivity;
-        $this->getLastSeenUseCase = $getLastSeen;
+        $this->addActivityUseCase = $addActivityUseCase;
+        $this->getActivityUseCase = $getActivityUseCase;
     }
 
     /**
@@ -61,13 +61,14 @@ class UserLastSeenController extends AbstractFOSRestController
      */
     public function isOnline(string $userId)
     {
-        $useCaseRequest = new GetLastSeenRequest($userId);
-        $response = $this->getLastSeenUseCase->execute($useCaseRequest);
+        $useCaseRequest = new GetActivityRequest($userId);
+        $response = $this->getActivityUseCase->execute($useCaseRequest);
 
         $data = [
-            "userId" => $userId,
+            "userId" => $response->getId(),
             "online" => $response->isOnline(),
-            "lastSeen" => $response->getLastSeen()
+            "lastSeen" => $response->getLastSeen(),
+            "knowned" => $response->isKnowned()
         ];
 
         return $this->view($data, Response::HTTP_OK);

@@ -2,7 +2,7 @@
 
 namespace App\Domain\LastSeen\UseCase\Request;
 
-class GetLastSeenRequest
+class GetActivityRequest
 {
 
     /** @var string */

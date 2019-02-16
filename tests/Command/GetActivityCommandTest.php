@@ -1,14 +1,12 @@
 <?php
 
-// tests/Command/CreateUserCommandTest.php
 namespace App\Tests\Command;
 
-use App\Command\LastseenCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class LastSeenCommandTest extends KernelTestCase
+class GetActivityommandTest extends KernelTestCase
 {
     public function testNonExistingUser()
     {
@@ -24,8 +22,7 @@ class LastSeenCommandTest extends KernelTestCase
 
         // the output of the command in the console
         $output = $commandTester->getDisplay();
-        $this->assertContains('last seen CommandTest', $output);
-        $this->assertContains('online: false', $output);
+        $this->assertContains('[WARNING] user CommandTest unknowned', $output);
     }
     public function testExistingUser()
     {
