@@ -5,18 +5,18 @@ namespace spec\App\Domain\LastSeen\UseCase;
 use App\Domain\LastSeen\UseCase\GetActivity;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use App\Domain\LastSeen\UserLastSeenStore;
-use App\Storage\UserLastSeenEntity;
+use App\Domain\LastSeen\ActivityStore;
+use App\Storage\ActivityEntity;
 use App\Domain\LastSeen\UseCase\Request\GetActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\GetActivityResponse;
-use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
+use App\Domain\LastSeen\Exception\ActivityNotFound;
 use Psr\Log\NullLogger;
 
 class GetActivitySpec extends ObjectBehavior
 {
     public $store;
 
-    public function let(UserLastSeenStore $store) {
+    public function let(ActivityStore $store) {
         $this->store = $store;
         
         $this->beConstructedWith($store, new NullLogger());
@@ -31,7 +31,7 @@ class GetActivitySpec extends ObjectBehavior
     public function it_get_status_from_model_for_existing_user() {
 
         //we use the entity to have a concreate implementation of the Model
-        $user = new UserLastSeenEntity(); 
+        $user = new ActivityEntity(); 
         $user->setId("phpspec");
         $user->setLastSeen((new \DateTime())->modify("-1 day"));
 
@@ -58,7 +58,7 @@ class GetActivitySpec extends ObjectBehavior
 
     public function it_always_return_offline_status_for_non_existing_user_id(){
         //train store to throw
-        $this->store->findUser("phpspec")->willThrow(UserLastSeenNotFound::class);
+        $this->store->findUser("phpspec")->willThrow(ActivityNotFound::class);
 
         //usecase
         $request = new GetActivityRequest("phpspec");

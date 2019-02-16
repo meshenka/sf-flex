@@ -2,7 +2,7 @@
 
 namespace App\Domain\LastSeen\Exception;
 
-class UserLastSeenNotFound extends \Exception
+class ActivityNotFound extends \Exception
 {
     
     /** @var string */
@@ -10,8 +10,8 @@ class UserLastSeenNotFound extends \Exception
     
     public function __construct(string $userId)
     {
+        parent::__construct('Activity not found for this id');
         $this->userId = $userId;
-        parent::__construct('UserLastSeen not found for this id');
     }
 
     /**
@@ -20,17 +20,5 @@ class UserLastSeenNotFound extends \Exception
     public function getUserId()
     {
         return $this->userId;
-    }
-    
-    
-    /**
-     * Set the value of userId
-     *
-     * @return  self
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-        return $this;
     }
 }

@@ -6,7 +6,7 @@
  */
 namespace App\Domain\LastSeen\Model;
 
-abstract class UserLastSeen
+abstract class Activity
 {
 
     /**

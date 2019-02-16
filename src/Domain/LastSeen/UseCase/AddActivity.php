@@ -2,19 +2,19 @@
 
 namespace App\Domain\LastSeen\UseCase;
 
-use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
-use App\Domain\LastSeen\UserLastSeenStore;
+use App\Domain\LastSeen\Exception\ActivityNotFound;
+use App\Domain\LastSeen\ActivityStore;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\AddActivityResponse;
-use App\Domain\LastSeen\Model\UserLastSeen;
+use App\Domain\LastSeen\Model\Activity;
 
 class AddActivity
 {
 
-    /** @var UserLastSeenStore */
+    /** @var ActivityStore */
     private $userStore;
 
-    public function __construct(UserLastSeenStore $userStore)
+    public function __construct(ActivityStore $userStore)
     {
         $this->userStore = $userStore;
     }
@@ -25,14 +25,14 @@ class AddActivity
         // if none found, create a new one and returns
         // else if request->date > user.lastSeen update user and returns
         try {
-            /** @var UserLastSeen */
+            /** @var Activity */
             $user = $this->userStore->findUser($request->getUserId());
 
             if ($request->getDate() > $user->getLastSeen()) {
                 $user->setLastSeen($request->getDate());
                 $this->userStore->persist($user);
             }
-        } catch (UserLastSeenNotFound $ex) {
+        } catch (ActivityNotFound $ex) {
             $user = $this->userStore->new($request->getUserId(), $request->getDate());
             $this->userStore->persist($user);
         }

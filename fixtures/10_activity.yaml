@@ -1,4 +1,4 @@
-App\Storage\UserLastSeenEntity:
+App\Storage\ActivityEntity:
   user_{1..100}:
     id: '<current()>\@fixture.loc'
     lastSeen: <dateTime()>

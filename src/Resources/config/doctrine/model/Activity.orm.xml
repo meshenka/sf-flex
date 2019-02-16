@@ -4,14 +4,8 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Storage\UserLastSeenEntity" 
-        table="user_last_seen" 
-        repository-class="App\Storage\UserLastSeenRepository" 
-        read-only="false">
-
-        <id name="id" 
-            type="string" length="255">
-            <!-- <generator strategy="AUTO" /> -->
-        </id>
-    </entity>
+    <mapped-superclass name="App\Domain\LastSeen\Model\Activity">
+        <field name="lastSeen" 
+            type="datetime"/>
+    </mapped-superclass>
 </doctrine-mapping>

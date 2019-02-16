@@ -2,18 +2,18 @@
 
 namespace App\Storage;
 
-use App\Domain\LastSeen\UserLastSeenStore;
+use App\Domain\LastSeen\ActivityStore;
 // use Doctrine\ORM\EntityRepository;
-use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
-use App\Domain\LastSeen\Model\UserLastSeen;
+use App\Domain\LastSeen\Exception\ActivityNotFound;
+use App\Domain\LastSeen\Model\Activity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class UserLastSeenRepository extends ServiceEntityRepository implements UserLastSeenStore
+class ActivityRepository extends ServiceEntityRepository implements ActivityStore
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, UserLastSeenEntity::class);
+        parent::__construct($registry, ActivityEntity::class);
     }
 
     /**
@@ -25,7 +25,7 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
         $user = $this->find($id);
 
         if (!$user) {
-            throw new UserLastSeenNotFound($id);
+            throw new ActivityNotFound($id);
         }
 
         return $user;
@@ -33,10 +33,10 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
 
     /**
      *
-     * @param \App\Domain\LastSeen\Model\UserLastSeen $user
+     * @param \App\Domain\LastSeen\Model\Activity $user
      * @return void
      */
-    public function persist(UserLastSeen $user)
+    public function persist(Activity $user)
     {
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
@@ -48,10 +48,10 @@ class UserLastSeenRepository extends ServiceEntityRepository implements UserLast
      * @param string $id
      * @param \DateTime $date
      *
-     * @return \App\Domain\LastSeen\Model\UserLastSeen
+     * @return \App\Domain\LastSeen\Model\Activity
      */
-    public function new(string $id, \DateTime $date): UserLastSeen
+    public function new(string $id, \DateTime $date): Activity
     {
-        return (new UserLastSeenEntity())->setId($id)->setLastSeen($date);
+        return (new ActivityEntity())->setId($id)->setLastSeen($date);
     }
 }
