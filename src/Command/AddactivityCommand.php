@@ -52,12 +52,12 @@ class AddactivityCommand extends Command
         $response = $this->findUser($user);
 
         // @todo try to avoid this horror
-        $lastSeen = $response->isKnowned() ? $response->getLastSeen()->format(\DateTime::RFC3339) : 'null';
+        $lastSeen = $response->getLastSeen()->format(\DateTime::RFC3339);
 
         $io->writeln(sprintf(
             'last seen %s <info>(online: %s)</info> <comment>(lastseen: %s)</comment>',
             $user,
-            strvall($response->isOnline()),
+            strval($response->isOnline()),
             $lastSeen
         ));
      

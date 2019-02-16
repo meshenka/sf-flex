@@ -22,8 +22,7 @@ class GetActivityommandTest extends KernelTestCase
 
         // the output of the command in the console
         $output = $commandTester->getDisplay();
-        $this->assertContains('last seen CommandTest', $output);
-        $this->assertContains('online: false', $output);
+        $this->assertContains('[WARNING] user CommandTest unknowned', $output);
     }
     public function testExistingUser()
     {
