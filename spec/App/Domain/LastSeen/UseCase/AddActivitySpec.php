@@ -6,20 +6,21 @@ use App\Domain\LastSeen\UseCase\AddActivity;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use App\Domain\LastSeen\UserLastSeenStore;
-use App\Domain\LastSeen\Model\UserLastSeen;use Faker\Provider\zh_TW\DateTime;
+use App\Domain\LastSeen\Model\UserLastSeen;
+use Faker\Provider\zh_TW\DateTime;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\AddActivityResponse;
 use App\Domain\LastSeen\Exception\UserLastSeenNotFound;
-
+use Psr\Log\LoggerInterface;
 
 class AddActivitySpec extends ObjectBehavior
 {
     public $store;
 
-    public function let(UserLastSeenStore $store) {
+    public function let(UserLastSeenStore $store, LoggerInterface $logger) {
         $this->store = $store;
         
-        $this->beConstructedWith($store);
+        $this->beConstructedWith($store, $logger);
         
     }
 

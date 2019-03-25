@@ -7,6 +7,7 @@ use App\Domain\LastSeen\UserLastSeenStore;
 use App\Domain\LastSeen\UseCase\Request\AddActivityRequest;
 use App\Domain\LastSeen\UseCase\Response\AddActivityResponse;
 use App\Domain\LastSeen\Model\UserLastSeen;
+use Psr\Log\LoggerInterface;
 
 class AddActivity
 {
@@ -14,9 +15,13 @@ class AddActivity
     /** @var UserLastSeenStore */
     private $userStore;
 
-    public function __construct(UserLastSeenStore $userStore)
+    /** @var LoggerInterface */
+    private $logger;
+
+    public function __construct(UserLastSeenStore $userStore, LoggerInterface $logger)
     {
         $this->userStore = $userStore;
+        $this->logger = $logger;
     }
 
     public function execute(AddActivityRequest $request) : AddActivityResponse
@@ -31,10 +36,12 @@ class AddActivity
             if ($request->getDate() > $user->getLastSeen()) {
                 $user->setLastSeen($request->getDate());
                 $this->userStore->persist($user);
+                $this->logger->info('Activity updated', ['id' => $request->getUserId()]);
             }
         } catch (UserLastSeenNotFound $ex) {
             $user = $this->userStore->new($request->getUserId(), $request->getDate());
             $this->userStore->persist($user);
+            $this->logger->info('Activity created', ['id' => $request->getUserId()]);
         }
 
         //there is no data carried out of the response
