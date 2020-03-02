@@ -19,15 +19,15 @@ TODO
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> symfony/webpack-encore-pack ###
-/node_modules/
-/public/build/
-npm-debug.log
-yarn-error.log
-###< symfony/webpack-encore-pack ###
-
 ###> behat/symfony2-extension ###
 behat.yml
 ###< behat/symfony2-extension ###
 
 *.cache
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###

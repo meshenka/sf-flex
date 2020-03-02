@@ -31,7 +31,7 @@
         "behat/symfony2-extension": "^2.1",
         "behatch/contexts": "^3.2",
         "hautelook/alice-bundle": "^2.3",
-        "phpspec/phpspec": "^5.1",
+        "phpspec/phpspec": "^6.1",
         "sensiolabs/security-checker": "^5.0",
         "symfony/debug-bundle": "^4.0",
         "symfony/debug-pack": "^1.0",
@@ -39,7 +39,7 @@
         "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "^1.0",
         "symfony/web-server-bundle": "^4.0",
-        "symfony/webpack-encore-pack": "^1.0"
+        "symfony/webpack-encore-bundle": "^1.7"
     },
     "config": {
         "preferred-install": {
